@@ -23,7 +23,6 @@ match the cluster distribution of the entire training set.
 
 from __future__ import absolute_import
 from __future__ import division
-from __future__ import print_function
 
 from sklearn.cluster import MiniBatchKMeans
 import numpy as np

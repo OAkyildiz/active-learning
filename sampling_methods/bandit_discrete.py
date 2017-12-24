@@ -14,7 +14,7 @@
 
 """Bandit wrapper around base AL sampling methods.
 
-Assumes adversarial multi-armed bandit setting where arms correspond to 
+Assumes adversarial multi-armed bandit setting where arms correspond to
 mixtures of different AL methods.
 
 Uses EXP3 algorithm to decide which AL method to use to create the next batch.
@@ -24,7 +24,6 @@ https://www.csie.ntu.edu.tw/~htlin/paper/doc/aaai15albl.pdf
 
 from __future__ import absolute_import
 from __future__ import division
-from __future__ import print_function
 
 import numpy as np
 
@@ -122,4 +121,3 @@ class BanditDiscreteSampler(WrapperSamplingMethod):
     output['pull_history'] = self.pull_history
     output['rewards'] = self.acc_history
     return output
-

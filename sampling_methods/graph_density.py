@@ -21,7 +21,6 @@ https://www.mpi-inf.mpg.de/fileadmin/inf/d2/Research_projects_files/EbertCVPR201
 
 from __future__ import absolute_import
 from __future__ import division
-from __future__ import print_function
 
 import copy
 

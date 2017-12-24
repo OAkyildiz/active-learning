@@ -23,16 +23,18 @@ from __future__ import division
 from __future__ import print_function
 
 from io import BytesIO
+from io import StringIO
+
 import os
 import pickle
-import StringIO
-import tarfile
-import urllib2
 
-import keras.backend as K
-from keras.datasets import cifar10
-from keras.datasets import cifar100
-from keras.datasets import mnist
+import tarfile
+import urllib.request
+
+from tensorflow import keras
+K = keras.backend
+
+from tensorflow.python.keras.datasets import cifar10, cifar100, mnist
 
 import numpy as np
 import pandas as pd
@@ -97,9 +99,9 @@ def get_wikipedia_talk_data():
   ANNOTATED_COMMENTS_URL = 'https://ndownloader.figshare.com/files/7554634'
   ANNOTATIONS_URL = 'https://ndownloader.figshare.com/files/7554637'
 
+  #updated for python 3
   def download_file(url):
-    req = urllib2.Request(url)
-    response = urllib2.urlopen(req)
+    response = urllib.request.urlopen(url)
     return response
 
   # Process comments
@@ -166,8 +168,7 @@ def get_cifar10():
   """
   url = 'http://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz'
   def download_file(url):
-    req = urllib2.Request(url)
-    response = urllib2.urlopen(req)
+    response = urllib.request.urlopen((url))
     return response
   response = download_file(url)
   tmpfile = BytesIO()
@@ -189,7 +190,7 @@ def get_cifar10():
   for member in tar_dir.getnames():
     if '_batch' in member:
       filestream = tar_dir.extractfile(member).read()
-      batch = pickle.load(StringIO.StringIO(filestream))
+      batch = pickle.load(BytesIO(filestream)) #not StringIO
       if X is None:
         X = np.array(batch['data'], dtype=np.uint8)
         y = np.array(batch['labels'])
@@ -277,6 +278,7 @@ def main(argv):
 
   for d in datasets:
     print(d[1])
+    print(d, " in datasets.")
     get_mldata(d)
 
 

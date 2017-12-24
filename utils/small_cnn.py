@@ -15,24 +15,31 @@
 """Implements Small CNN model in keras using tensorflow backend."""
 from __future__ import absolute_import
 from __future__ import division
-from __future__ import print_function
 
 import copy
-
-import keras
-import keras.backend as K
-from keras.layers import Activation
-from keras.layers import Conv2D
-from keras.layers import Dense
-from keras.layers import Dropout
-from keras.layers import Flatten
-from keras.layers import MaxPooling2D
-from keras.models import Sequential
 
 import numpy as np
 import tensorflow as tf
 
+## TODO: tf.__version__ < 1.2
+#import keras
+#import keras.backend as K
 
+#from keras.layers import Activation
+#from keras.layers import Conv2D
+#from keras.layers import Dense
+#from keras.layers import Dropout
+#from keras.layers import Flatten
+#from keras.layers import MaxPooling2D
+#from keras.models import Sequential
+
+from tensorflow import keras
+from tensorflow.python.keras.layers import Input, Conv2D, Dense
+from tensorflow.python.keras.layers import Activation, Dropout, Flatten, MaxPooling2D
+from tensorflow.python.keras.models import Sequential
+
+
+K=keras.backend
 class SmallCNN(object):
   """Small convnet that matches sklearn api.
 
